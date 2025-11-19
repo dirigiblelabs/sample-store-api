@@ -1,3 +1,5 @@
+import { Entity, Table, Id, Generated, Column } from 'sdk/db';
+
 @Entity("Customer")
 @Table("CUSTOMER")
 export class CustomerEntity {
@@ -5,11 +7,11 @@ export class CustomerEntity {
     @Id()
     @Generated("sequence")
     @Column({ name: "CUSTOMER_ID", type: "long" })
-    public id: number;
+    public id?: number;
 
     @Column({ name: "CUSTOMER_NAME", type: "string" })
-    public name: string;
+    public name?: string;
 
     @Column({ name: "CUSTOMER_ADDRESS", type: "string" })
-    public address: string;
+    public address?: string;
 }

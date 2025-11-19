@@ -28,6 +28,16 @@ let selectWithParams = store.query("from Customer c where c.name like ?1", ["J%"
 response.println(JSON.stringify(selectWithParams, null, 2));
 
 response.println("");
+response.println("Select customers with first name starts with M with typed query:");
+let selectWithParamsTyped = store.query("from Customer c where c.name like ?1", [{ "type": "VARCHAR", "value": "M%" }]);
+response.println(JSON.stringify(selectWithParamsTyped, null, 2));
+
+response.println("");
 response.println("Select customers with first name starts with M with named query:");
 let selectWithParamsNamed = store.query("from Customer c where c.name like :first_name", [{ "name": "first_name", "type": "VARCHAR", "value": "M%" }]);
 response.println(JSON.stringify(selectWithParamsNamed, null, 2));
+
+response.println("");
+response.println("Select customers with first name in ['John', 'Jane'] with named query:");
+let selectWithArrayParamsNamed = store.query("from Customer c where c.name in :names", [{ "name": "names", "type": "ARRAY", "value": ["John", "Jane"] }]);
+response.println(JSON.stringify(selectWithArrayParamsNamed, null, 2));
